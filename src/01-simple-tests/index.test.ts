@@ -12,7 +12,8 @@ describe('simpleCalculator tests', () => {
   });
 
   test('should multiply two numbers', () => {
-    // Write your test here
+    const rawInput = { a: 10, b: 10, action: Action.Multiply };
+    expect(simpleCalculator(rawInput)).toBe(100);
   });
 
   test('should divide two numbers', () => {
