@@ -7,7 +7,8 @@ describe('simpleCalculator tests', () => {
   });
 
   test('should subtract two numbers', () => {
-    // Write your test here
+    const rawInput = { a: 10, b: 2, action: Action.Subtract };
+    expect(simpleCalculator(rawInput)).toBe(8);
   });
 
   test('should multiply two numbers', () => {
