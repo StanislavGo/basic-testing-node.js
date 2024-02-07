@@ -27,10 +27,11 @@ describe('simpleCalculator tests', () => {
   });
 
   test('should return null for invalid action', () => {
-    // Write your test here
+    const rawInput = { a: 1, b: 3, action: "minus" };
+    expect(simpleCalculator(rawInput)).toBe(null);
   });
 
   test('should return null for invalid arguments', () => {
-    // Write your test here
+    
   });
 });
