@@ -32,6 +32,7 @@ describe('simpleCalculator tests', () => {
   });
 
   test('should return null for invalid arguments', () => {
-    
+    const rawInput = { a: "a", b: 3, action: Action.Add };
+    expect(simpleCalculator(rawInput)).toBe(null);
   });
 });
