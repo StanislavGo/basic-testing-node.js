@@ -22,7 +22,9 @@ describe('BankAccount', () => {
   });
 
   test('should deposit money', () => {
-    // Write your test here
+    const bankAccount = getBankAccount(100);
+    const newBalance = bankAccount.deposit(50).getBalance();
+    expect(newBalance).toBe(150);
   });
 
   test('should withdraw money', () => {
