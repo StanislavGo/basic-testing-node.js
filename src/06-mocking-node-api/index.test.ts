@@ -1,4 +1,4 @@
-import { /* readFileAsynchronously,*/ doStuffByTimeout, /* doStuffByInterval */ } from '.';
+import { /* readFileAsynchronously, */ doStuffByTimeout, doStuffByInterval } from '.';
 
 describe('doStuffByTimeout', () => {
   beforeAll(() => {
@@ -26,14 +26,18 @@ describe('doStuffByTimeout', () => {
   });
 
   test('should call callback only after timeout', () => {
-    // const callback = jest.fn()
-    // const timeout = 1000;
+    const callback = jest.fn()
+    const timeout = 1000;
 
-    // doStuffByTimeout(callback, timeout);
-    // jest.advanceTimersByTime(timeout);
+    const setTimeoutMock = jest.spyOn(global, "setTimeout");
 
-    // expect(setTimeout).toHaveBeenCalledTimes(1);
-    // expect(callback).toHaveBeenCalledTimes(1);
+    doStuffByTimeout(callback, timeout);
+    jest.advanceTimersByTime(timeout);
+
+    expect(setTimeoutMock).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledTimes(1);
+
+    setTimeoutMock.mockRestore();
   });
 });
 
@@ -47,25 +51,29 @@ describe('doStuffByInterval', () => {
   });
 
   test('should set interval with provided callback and timeout', () => {
-    // const callback = jest.fn()
-    // const interval = 1000;
+    const callback = jest.fn()
+    const interval = 1000;
+    const setIntervalMock = jest.spyOn(global, "setInterval");
 
-    // doStuffByInterval(callback, interval);
-    // jest.advanceTimersByTime(interval);
+    doStuffByInterval(callback, interval);
+    jest.advanceTimersByTime(interval);
 
-    // expect(setInterval).toHaveBeenCalledWith(expect.any(Function), interval);
+    expect(setIntervalMock).toHaveBeenCalledWith(expect.any(Function), interval);
+    setIntervalMock.mockRestore();
   });
 
   test('should call callback multiple times after multiple intervals', () => {
-    // const callback = jest.fn()
-    // const interval = 1000;
-    // const numberOfIntervals = 4;
+    const callback = jest.fn()
+    const interval = 1000;
+    const numberOfIntervals = 4;
+    const setIntervalMock = jest.spyOn(global, "setInterval");
 
-    // doStuffByInterval(callback, interval);
-    // jest.advanceTimersByTime(interval * numberOfIntervals);
+    doStuffByInterval(callback, interval);
+    jest.advanceTimersByTime(interval * numberOfIntervals);
 
-    // expect(setInterval).toHaveBeenCalledTimes(1);
-    // expect(callback).toHaveBeenCalledTimes(numberOfIntervals);
+    expect(setIntervalMock).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledTimes(numberOfIntervals);
+    setIntervalMock.mockRestore();
   });
 });
 
