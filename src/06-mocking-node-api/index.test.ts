@@ -18,13 +18,18 @@ describe('doStuffByTimeout', () => {
     doStuffByTimeout(callback, timeout);
     jest.advanceTimersByTime(timeout);
 
-    expect(setTimeout).toHaveBeenCalledTimes(1);
     expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), timeout);
-    expect(callback).toHaveBeenCalledTimes(1);
   });
 
   test('should call callback only after timeout', () => {
-    // Write your test here
+    const callback = jest.fn()
+    const timeout = 1000;
+
+    doStuffByTimeout(callback, timeout);
+    jest.advanceTimersByTime(timeout);
+
+    expect(setTimeout).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -38,7 +43,13 @@ describe('doStuffByInterval', () => {
   });
 
   test('should set interval with provided callback and timeout', () => {
-    // Write your test here
+    const callback = jest.fn()
+    const timeout = 1000;
+
+    doStuffByInterval(callback, timeout);
+    jest.advanceTimersByTime(timeout);
+
+    expect(setInterval).toHaveBeenCalledWith(expect.any(Function), timeout);
   });
 
   test('should call callback multiple times after multiple intervals', () => {
