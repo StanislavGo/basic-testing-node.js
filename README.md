@@ -1,8 +1,4 @@
-# Basic testing
-
-⚠️ DO NOT SUBMIT PULL REQUESTS TO THIS REPO ⚠️
-
----
+# Unit testing
 
 ### Prerequisites
 1. Install [Node.js](https://nodejs.org/en/download/)   
